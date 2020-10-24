@@ -1,12 +1,15 @@
 import React from "react";
-import Photo from "./components/Photo";
+import PhotoViewer from "./components/PhotoViewer";
+import { PhotoViewerProvider } from "./PhotoViewerContext";
 
 function App() {
 	return (
-		<div className="App">
-			Hello Mars
-			<Photo />
-		</div>
+		<PhotoViewerProvider>
+			<div className="App">
+				Hello Mars
+				<PhotoViewer />
+			</div>
+		</PhotoViewerProvider>
 	);
 }
 
