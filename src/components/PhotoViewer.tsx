@@ -18,7 +18,6 @@ function PhotoViewer() {
 	};
 
 	const handleSearch = () => {
-		console.log("handling search");
 		getData(photoViewerState.selCamera, photoViewerState.selSol, photoViewerState.selRoverType, photoViewerState.selEarthDate);
 	};
 

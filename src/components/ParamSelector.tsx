@@ -29,7 +29,6 @@ function ParamSelector() {
 	}, [useSol]);
 
 	useEffect(() => {
-		console.log("running constantly?");
 		if (isMounted && !useSol) {
 			let combDate = `${photoViewerState.earthYear}-${photoViewerState.earthMonth}-${photoViewerState.earthDay}`;
 			setPhotoViewerState({ ...photoViewerState, selEarthDate: combDate, selSol: "" });
