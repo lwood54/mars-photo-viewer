@@ -4,9 +4,12 @@ import { PhotoViewerState } from "./types/interfaces";
 const defaultPhotoViewerState: PhotoViewerState = {
 	photoData: null,
 	selCamera: "fhaz",
-	selSol: 21,
-	selRoverType: "curiosity",
+	selSol: 54,
 	selEarthDate: "",
+	earthYear: "",
+	earthMonth: "",
+	earthDay: "",
+	selRoverType: "curiosity",
 };
 export const PhotoViewerContext = createContext<any>(defaultPhotoViewerState);
 

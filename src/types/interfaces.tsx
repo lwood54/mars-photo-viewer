@@ -31,5 +31,8 @@ export interface PhotoViewerState {
 	selCamera: string;
 	selSol: number;
 	selEarthDate: string;
+	earthYear: string;
+	earthMonth: string;
+	earthDay: string;
 	selRoverType: string;
 }
