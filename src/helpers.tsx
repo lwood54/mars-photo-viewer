@@ -1,13 +1,19 @@
-export const fetchPhotoData = async (camera: string, sol: number = 0, roverType: string, earthDate: string) => {
+export const fetchPhotoData = async (camera: string, sol: number, roverType: string, earthDate: string) => {
 	const api_key = "ho6NPUw7FBguQ4Nsju6c0NKaBS8x6joZjffiuxo6";
+	// create string that can be concatenated depending on user selections
 	let apiString = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverType}/photos?`;
 	if (earthDate) {
+		// need to split string in order to check each secdtion matches required
+		// pattern so api call doesn't cause app to crash
 		const earthDateArr = earthDate.split("-");
 		const year = earthDateArr[0];
 		const month = earthDateArr[1];
 		const day = earthDateArr[2];
+		// this confirms string passes check so api call won't crash
+		// checking for leap year was required and checking for months that have 30 vs 31 days
 		let readyToSubmit = dateCheck(year, month, day);
 		if (readyToSubmit) {
+			// check earth_date first
 			apiString += `&earth_date=${earthDate}`;
 		}
 	} else if (sol >= 0) {

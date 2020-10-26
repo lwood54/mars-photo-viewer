@@ -22,10 +22,6 @@ export interface PhotoData {
 	sol?: number;
 }
 
-export interface FetchedData {
-	photos: PhotoData[];
-}
-
 export interface PhotoViewerState {
 	photoData: PhotoData | null;
 	selCamera: string;

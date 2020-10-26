@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { PhotoData } from "../types/interfaces";
 
+// styled-component that creates a fixed position pop up modal
+// to display selected image data
 const ModalSC = styled.div`
 	position: fixed;
 	top: 10vh;
@@ -14,6 +16,7 @@ const ModalSC = styled.div`
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	overflow: scroll;
 `;
+// background allows user to still see list of images, darkens
 const ModalBackgroundSC = styled.div`
 	position: fixed;
 	top: 0;
@@ -24,12 +27,14 @@ const ModalBackgroundSC = styled.div`
 	z-index: 10;
 `;
 
+// creating type interface that helps define props, currentData is optional
 interface Props {
 	currentData?: PhotoData;
 	toggleModal: (e: React.MouseEvent<HTMLElement>, data?: PhotoData) => void;
 }
 
-function Modal({ currentData, toggleModal }: Props) {
+// destructuring the used variables from props and defining type with created interface
+function Modal({ currentData, toggleModal }: Props): JSX.Element {
 	return (
 		<div>
 			<ModalBackgroundSC onClick={toggleModal} />

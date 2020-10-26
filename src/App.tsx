@@ -2,7 +2,7 @@ import React from "react";
 import PhotoViewer from "./components/PhotoViewer";
 import { PhotoViewerProvider } from "./PhotoViewerContext";
 
-function App() {
+function App(): JSX.Element {
 	return (
 		<PhotoViewerProvider>
 			<div className="App">
