@@ -37,7 +37,7 @@ export const isLeapYear = (year: string) => {
 
 // check will prevent non functionining string to get applied to api call
 export const dateCheck = (year: string, month: string, day: string) => {
-	if (+year >= 1997 && +year <= 2030) {
+	if (+year >= 2003 && +year <= 2030) {
 		if (isLeapYear(year) && month === "2") {
 			if (+day >= 1 && +day <= 29) {
 				return true;

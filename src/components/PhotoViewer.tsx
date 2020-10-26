@@ -1,11 +1,24 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
+import styled from "styled-components";
 import { PhotoViewerContext } from "../PhotoViewerContext";
 import { fetchPhotoData } from "../helpers";
 import ParamSelector from "./ParamSelector";
 import { PhotoData } from "../types/interfaces";
+import Photo from "./Photo";
+import Modal from "./Modal";
+
+const PhotosContainer = styled.div`
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	margin: 5px;
+`;
 
 function PhotoViewer() {
 	const [photoViewerState, setPhotoViewerState] = useContext(PhotoViewerContext);
+	const [modalOpen, setModalOpen] = useState(false);
+	const [currentData, setCurrentData] = useState({});
 
 	// run once on mount
 	useEffect(() => {
@@ -21,26 +34,26 @@ function PhotoViewer() {
 		getData(photoViewerState.selCamera, photoViewerState.selSol, photoViewerState.selRoverType, photoViewerState.selEarthDate);
 	};
 
+	const toggleModal = (e: React.MouseEvent<HTMLElement>, data?: PhotoData) => {
+		console.log("toggle modal", e);
+		console.log("specific photo data: ", data);
+		setCurrentData(data);
+		setModalOpen(!modalOpen);
+	};
+
 	const photoEls =
 		photoViewerState.photoData &&
 		photoViewerState.photoData.photos.map((photo: PhotoData, i: number) => {
-			return <img src={photo.img_src} alt="" key={photo.id} />;
+			return <Photo photoData={photo} key={photo.id} toggleModal={toggleModal} />;
 		});
 
 	return (
 		<div>
+			{modalOpen ? <Modal toggleModal={toggleModal} currentData={currentData} /> : null}
 			<h1>Mars Photo Viewer</h1>
 			<ParamSelector />
-			<h3>camera type: {photoViewerState.selCamera}</h3>
-			<h3>{photoViewerState.selSol >= 0 ? photoViewerState.selSol : "picked Earth Date"}</h3>
-			<h3>rover type: {photoViewerState.selRoverType}</h3>
-			<h3>
-				{photoViewerState.earthYear !== "" || photoViewerState.earthMonth !== "" || photoViewerState.earthDay !== ""
-					? photoViewerState.selEarthDate
-					: "picked sol"}
-			</h3>
 			<button onClick={handleSearch}>search</button>
-			<div>{photoEls}</div>
+			<PhotosContainer>{photoEls}</PhotosContainer>
 		</div>
 	);
 }

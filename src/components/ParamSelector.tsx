@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { PhotoViewerContext } from "../PhotoViewerContext";
-import { isLeapYear } from "../helpers";
 
 function ParamSelector() {
 	enum camera {
@@ -52,7 +51,7 @@ function ParamSelector() {
 	};
 
 	const handleEarthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		// earth date landing of first mars rover: July 4, 1997
+		// first of these 3 rovers to land: Spirit (Jan 4, 2004)
 		setUseSol(false);
 		const val = e.target.value;
 		const name = e.target.name;

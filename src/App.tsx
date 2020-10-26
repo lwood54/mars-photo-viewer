@@ -6,7 +6,6 @@ function App() {
 	return (
 		<PhotoViewerProvider>
 			<div className="App">
-				Hello Mars
 				<PhotoViewer />
 			</div>
 		</PhotoViewerProvider>
