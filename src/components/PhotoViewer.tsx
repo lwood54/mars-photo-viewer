@@ -6,6 +6,7 @@ import ParamSelector from "./ParamSelector";
 import { PhotoData } from "../types/interfaces";
 import Photo from "./Photo";
 import Modal from "./Modal";
+import Slider from "./Slider";
 
 // styled-component
 const PhotosContainer: React.FC = styled.div`
@@ -24,6 +25,8 @@ function PhotoViewer(): JSX.Element {
 	// setting currentData that is selected when images are clicked on
 	// data will be sent to Modal for display
 	const [currentData, setCurrentData] = useState({});
+	// state determines grid or slider view
+	const [currentView, setCurrentView] = useState(false);
 
 	// run once on mount
 	useEffect(() => {
@@ -53,13 +56,18 @@ function PhotoViewer(): JSX.Element {
 		setModalOpen(!modalOpen);
 	};
 
+	const toggleGridView = () => {
+		console.log("testing");
+		setCurrentView(currentView === "grid" ? "slider" : "grid");
+	};
+
 	// creating an array of photo elements to display when fetch returns results
-	const photoEls =
+	const photoEls: JSX.Element[] =
 		photoViewerState.photoData && // checking if data is truthy before mapping
 		photoViewerState.photoData.photos.map((photo: PhotoData, i: number) => {
 			// returning individual photo item, passing toggle function help collect
 			// data used on whichever photo will be clicked
-			return <Photo photoData={photo} key={photo.id} toggleModal={toggleModal} />;
+			return <Photo photoData={photo} key={photo.id} toggleModal={toggleModal} currentView={currentView} />;
 		});
 
 	return (
@@ -68,7 +76,8 @@ function PhotoViewer(): JSX.Element {
 			<h1>Mars Photo Viewer</h1>
 			<ParamSelector />
 			<button onClick={handleSearch}>search</button>
-			<PhotosContainer>{photoEls}</PhotosContainer>
+			<button onClick={toggleGridView}>{currentView ? "Slider" : "Grid"}</button>
+			{currentView === "grid" ? <PhotosContainer>{photoEls}</PhotosContainer> : <Slider photoArray={photoEls} />}
 		</div>
 	);
 }
