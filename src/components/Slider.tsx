@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
-const slideLeft = keyframes`
+const center_left = keyframes`
   from {
-    /* transform: rotate(0deg); */
     transform: translate(0,0);
 		opacity: 1;
   }
@@ -12,6 +11,46 @@ const slideLeft = keyframes`
     transform: translate(-100vw,0);
 		opacity: 0;
   }
+`;
+const animate_r_c = keyframes`
+  from {
+    transform: translate(100vw,0);
+		opacity: 0;
+  }
+
+  to {
+    transform: translate(0vw,0);
+		opacity: 1;
+  }
+`;
+const Right_center = styled.div`
+	animation: ${animate_r_c} 2s linear;
+`;
+
+const center_right = keyframes`
+	from {
+    transform: translate(0,0);
+		opacity: 1;
+  }
+
+  to {
+    transform: translate(100vw,0);
+		opacity: 0;
+  }
+`;
+const animate_l_c = keyframes`
+	from {
+    transform: translate(-100vw,0);
+		opacity: 0;
+  }
+
+  to {
+    transform: translate(0,0);
+		opacity: 1;
+  }
+`;
+const Left_center = styled.div`
+	animation: ${animate_l_c} 2s linear;
 `;
 
 const SliderSC = styled.div`
@@ -37,13 +76,29 @@ const PhotoContainerSC = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* animation: ${slideLeft} 1s linear;
-	animation-fill-mode: forwards; */
+	padding: 0 25%;
+`;
+
+const PrevPhotoContainerSC = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* visibility: hidden; */
+`;
+
+const NextPhotoContainerSC = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* visibility: hidden; */
 `;
 
 const QuickSC = styled.div`
 	display: flex;
-	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	overflow: hidden;
+
 	/* flex-direction: column; */
 `;
 
@@ -59,6 +114,11 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
 	// this will just be an array of the first 3 elements from the baseArray, which
 	// will be mutated, shuffled right and left
 	const [dispArray, setDispArray] = useState<Array<JSX.Element>>();
+	const [fromDir, setFromDir] = useState("from-right");
+
+	const prevViewRef = useRef();
+	const currentViewRef = useRef();
+	const nextViewRef = useRef();
 
 	useEffect(() => {
 		// process array to show only have first, next, and last items
@@ -80,6 +140,7 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
 		}
 		setBaseArray(array);
 		setDispArray(prepForDisp(array));
+		setFromDir("from-right");
 		// return array;
 	};
 	// const clickLeft = (prevArray: JSX.Element[] | null): JSX.Element[] | null => {
@@ -94,6 +155,7 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
 		}
 		setBaseArray(array);
 		setDispArray(prepForDisp(array));
+		setFromDir("from-left");
 		// return array;
 	};
 	const prepForDisp = (array: JSX.Element[] | null): JSX.Element[] | null => {
@@ -114,9 +176,19 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
 		<SliderSC>
 			<PrevArrowSC onClick={clickLeft} />
 			<QuickSC>
-				{dispArray ? <PhotoContainerSC>{dispArray[2]}</PhotoContainerSC> : null}
-				{dispArray ? <PhotoContainerSC>{dispArray[0]}</PhotoContainerSC> : "No results, please change parameters."}
-				{dispArray ? <PhotoContainerSC>{dispArray[1]}</PhotoContainerSC> : null}
+				{dispArray ? <PrevPhotoContainerSC className={"center_left"}>{dispArray[2]}</PrevPhotoContainerSC> : null}
+				{dispArray ? (
+					<PhotoContainerSC>
+						{fromDir === "from-right" ? (
+							<Right_center>{dispArray[0]}</Right_center>
+						) : fromDir === "from-left" ? (
+							<Left_center>{dispArray[0]}</Left_center>
+						) : undefined}
+					</PhotoContainerSC>
+				) : (
+					"No results, please change parameters."
+				)}
+				{dispArray ? <NextPhotoContainerSC>{dispArray[1]}</NextPhotoContainerSC> : null}
 			</QuickSC>
 			<NextArrowSC onClick={clickRight} />
 		</SliderSC>
