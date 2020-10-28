@@ -30,7 +30,7 @@ const PhotoItem = styled.div<PhotItemDiv>`
 interface Props {
 	photoData: PhotoData;
 	key: number;
-	toggleModal: (e: React.MouseEvent<HTMLElement>, data?: PhotoData) => void;
+	toggleModal?: (e: React.MouseEvent<HTMLElement>, data?: PhotoData) => void;
 	currentView: "grid" | "slider";
 	// currentView: React.ElementType | keyof JSX.IntrinsicElements;
 }
@@ -43,7 +43,7 @@ function Photo({ photoData, toggleModal, currentView }: Props): JSX.Element {
 	// passing data back onClick so that PhotoViewer can send the photoData
 	// of the selected image to Modal, so Modal can display
 	return (
-		<div onClick={(e) => toggleModal(e, photoData)}>
+		<div onClick={toggleModal ? (e) => toggleModal(e, photoData) : () => false}>
 			<PhotoItem currentView={currentView}>
 				<img src={photoData.img_src} alt={`${photoData?.rover.name} ${photoData?.earth_date}`} />
 			</PhotoItem>

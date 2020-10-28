@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 const slideLeft = keyframes`
@@ -20,25 +20,31 @@ const SliderSC = styled.div`
 	height: 80vh;
 `;
 
-const PrevArrow = styled.div`
+const PrevArrowSC = styled.button`
 	width: 20px;
-	height: 100px;
+	/* height: 100px; */
 	border: 1px solid red;
 `;
 
-const NextArrow = styled.div`
+const NextArrowSC = styled.button`
 	width: 20px;
-	height: 100px;
+	/* height: 100px; */
 	border: 1px solid green;
 `;
 
-const PhotoContainer = styled.div`
+const PhotoContainerSC = styled.div`
 	width: 80%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	animation: ${slideLeft} 1s linear;
-	animation-fill-mode: forwards;
+	/* animation: ${slideLeft} 1s linear;
+	animation-fill-mode: forwards; */
+`;
+
+const QuickSC = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	/* flex-direction: column; */
 `;
 
 // TODO: apply a class to both exiting and entering photos,
@@ -48,33 +54,71 @@ const PhotoContainer = styled.div`
 
 // Slider will take an array of Photos
 function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
-	const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number>(0);
+	// const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number>(0);
+	const [baseArray, setBaseArray] = useState<Array<JSX.Element>>(photoArray);
+	// this will just be an array of the first 3 elements from the baseArray, which
+	// will be mutated, shuffled right and left
+	const [dispArray, setDispArray] = useState<Array<JSX.Element>>();
 
-	const handlePrev = () => {
-		console.log("photoArray length: ", photoArray.length);
-		console.log("inside handlePrev: ", currentPhotoIndex);
-		if (currentPhotoIndex === 0) {
-			setCurrentPhotoIndex(photoArray.length - 1);
-		} else {
-			setCurrentPhotoIndex(currentPhotoIndex - 1);
+	useEffect(() => {
+		// process array to show only have first, next, and last items
+		setDispArray(prepForDisp(photoArray));
+		if (photoArray) {
+			setBaseArray(photoArray);
 		}
+	}, [photoArray]);
+
+	// const clickRight = (prevArray: JSX.Element[] | null): JSX.Element[] | null => {
+	const clickRight = () => {
+		// take array param, move all items to left, 0 goes to end
+		let array: JSX.Element[] | null = null;
+		if (baseArray) {
+			console.log("clickRight");
+			array = [...baseArray];
+			let firstItem = array.splice(0, 1);
+			array.push(firstItem[0]);
+		}
+		setBaseArray(array);
+		setDispArray(prepForDisp(array));
+		// return array;
 	};
-
-	const handleNext = () => {
-		console.log("photoArray length: ", photoArray.length);
-		console.log("inside handleNext: ", currentPhotoIndex);
-		if (currentPhotoIndex === photoArray.length - 1) {
-			setCurrentPhotoIndex(0);
-		} else {
-			setCurrentPhotoIndex(currentPhotoIndex + 1);
+	// const clickLeft = (prevArray: JSX.Element[] | null): JSX.Element[] | null => {
+	const clickLeft = () => {
+		let array: JSX.Element[] | null = null;
+		if (baseArray) {
+			console.log("clickLeft ?");
+			array = [...baseArray];
+			let lastItem = array.pop();
+			console.log("lastItem: ", lastItem);
+			array.unshift(lastItem!);
 		}
+		setBaseArray(array);
+		setDispArray(prepForDisp(array));
+		// return array;
+	};
+	const prepForDisp = (array: JSX.Element[] | null): JSX.Element[] | null => {
+		let prevItem: JSX.Element;
+		let currentItem: JSX.Element;
+		let nextItem: JSX.Element;
+		let dispArray: JSX.Element[] | null = null;
+		if (array) {
+			prevItem = array[array.length - 1];
+			currentItem = array[0];
+			nextItem = array[1];
+			dispArray = [currentItem, nextItem, prevItem];
+		}
+		return dispArray;
 	};
 
 	return (
 		<SliderSC>
-			<PrevArrow onClick={handlePrev} />
-			{photoArray ? <PhotoContainer>{photoArray[currentPhotoIndex]}</PhotoContainer> : "No results, please enter different parameters."}
-			<NextArrow onClick={handleNext} />
+			<PrevArrowSC onClick={clickLeft} />
+			<QuickSC>
+				{dispArray ? <PhotoContainerSC>{dispArray[2]}</PhotoContainerSC> : null}
+				{dispArray ? <PhotoContainerSC>{dispArray[0]}</PhotoContainerSC> : "No results, please change parameters."}
+				{dispArray ? <PhotoContainerSC>{dispArray[1]}</PhotoContainerSC> : null}
+			</QuickSC>
+			<NextArrowSC onClick={clickRight} />
 		</SliderSC>
 	);
 }

@@ -9,7 +9,7 @@ import Modal from "./Modal";
 import Slider from "./Slider";
 
 // styled-component
-const PhotosContainer: React.FC = styled.div`
+const PhotosContainerSC: React.FC = styled.div`
 	display: flex;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
@@ -67,7 +67,7 @@ function PhotoViewer(): JSX.Element {
 		photoViewerState.photoData.photos.map((photo: PhotoData, i: number) => {
 			// returning individual photo item, passing toggle function help collect
 			// data used on whichever photo will be clicked
-			return <Photo photoData={photo} key={photo.id} toggleModal={toggleModal} currentView={currentView} />;
+			return <Photo photoData={photo} key={photo.id} toggleModal={currentView === "grid" ? toggleModal : undefined} currentView={currentView} />;
 		});
 
 	return (
@@ -76,8 +76,8 @@ function PhotoViewer(): JSX.Element {
 			<h1>Mars Photo Viewer</h1>
 			<ParamSelector />
 			<button onClick={handleSearch}>search</button>
-			<button onClick={toggleGridView}>{currentView ? "Slider" : "Grid"}</button>
-			{currentView === "grid" ? <PhotosContainer>{photoEls}</PhotosContainer> : <Slider photoArray={photoEls} />}
+			<button onClick={toggleGridView}>{currentView === "grid" ? "Slider" : "Grid"}</button>
+			{currentView === "grid" ? <PhotosContainerSC>{photoEls}</PhotosContainerSC> : <Slider photoArray={photoEls} />}
 		</div>
 	);
 }
