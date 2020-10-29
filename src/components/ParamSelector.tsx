@@ -1,5 +1,40 @@
 import React, { useContext, useState, useEffect } from "react";
 import { PhotoViewerContext } from "../PhotoViewerContext";
+import styled from "styled-components";
+
+const FormSC = styled.form`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+`;
+
+const ParamBase = styled.div`
+	width: 100%;
+	margin: 10px;
+	select {
+		margin-left: 3px;
+		padding: 3px;
+	}
+	input {
+		margin-left: 3px;
+		padding: 3px;
+	}
+`;
+
+const EquipmentSC = styled.div`
+	width: 30%;
+`;
+
+const CameraSC = styled(ParamBase)``;
+
+const RoverSC = styled(ParamBase)``;
+
+const DatesSC = styled.div`
+	width: 65%;
+`;
+
+const SolSC = styled(ParamBase)``;
+const EarthDateSC = styled(ParamBase)``;
 
 function ParamSelector(): JSX.Element {
 	// using enum to make clear that these values are required and should not be changed
@@ -98,41 +133,53 @@ function ParamSelector(): JSX.Element {
 
 	return (
 		<div>
-			<form>
-				<label>
-					Camera
-					<select name="camera" value={photoViewerState.selCamera} onChange={handleCameraChange}>
-						<option value={camera.all}>{camera.all}</option>
-						<option value={camera.fhaz}>{camera.fhaz}</option>
-						<option value={camera.rhaz}>{camera.rhaz}</option>
-						<option value={camera.mast}>{camera.mast}</option>
-						<option value={camera.chemcam}>{camera.chemcam}</option>
-						<option value={camera.mahli}>{camera.mahli}</option>
-						<option value={camera.mardi}>{camera.mardi}</option>
-						<option value={camera.navcam}>{camera.navcam}</option>
-						<option value={camera.pancam}>{camera.pancam}</option>
-						<option value={camera.minites}>{camera.minites}</option>
-					</select>
-				</label>
-				<label>
-					Sol
-					<input type="text" onChange={handleSolChange} placeholder="type a number" value={photoViewerState.selSol} />
-				</label>
-				<label>
-					Earth Date
-					<input type="text" name="year" onChange={handleEarthDateChange} placeholder="earth year" value={photoViewerState.earthYear} />
-					<input type="text" name="month" onChange={handleEarthDateChange} placeholder="earth month" value={photoViewerState.earthMonth} />
-					<input type="text" name="day" onChange={handleEarthDateChange} placeholder="earth day" value={photoViewerState.earthDay} />
-				</label>
-				<label>
-					Rover Name
-					<select name="camera" value={photoViewerState.selRoverType} onChange={handleRoverChange}>
-						<option value="curiosity">Curiosity</option>
-						<option value="opportunity">Opportunity</option>
-						<option value="spirit">Spirit</option>
-					</select>
-				</label>
-			</form>
+			<FormSC>
+				<EquipmentSC>
+					<label>
+						<RoverSC>
+							Rover Name
+							<select name="camera" value={photoViewerState.selRoverType} onChange={handleRoverChange}>
+								<option value="curiosity">Curiosity</option>
+								<option value="opportunity">Opportunity</option>
+								<option value="spirit">Spirit</option>
+							</select>
+						</RoverSC>
+					</label>
+					<label>
+						<CameraSC>
+							Camera
+							<select name="camera" value={photoViewerState.selCamera} onChange={handleCameraChange}>
+								<option value={camera.all}>{camera.all}</option>
+								<option value={camera.fhaz}>{camera.fhaz}</option>
+								<option value={camera.rhaz}>{camera.rhaz}</option>
+								<option value={camera.mast}>{camera.mast}</option>
+								<option value={camera.chemcam}>{camera.chemcam}</option>
+								<option value={camera.mahli}>{camera.mahli}</option>
+								<option value={camera.mardi}>{camera.mardi}</option>
+								<option value={camera.navcam}>{camera.navcam}</option>
+								<option value={camera.pancam}>{camera.pancam}</option>
+								<option value={camera.minites}>{camera.minites}</option>
+							</select>
+						</CameraSC>
+					</label>
+				</EquipmentSC>
+				<DatesSC>
+					<label>
+						<EarthDateSC>
+							Earth Date
+							<input type="text" name="year" onChange={handleEarthDateChange} placeholder="earth year" value={photoViewerState.earthYear} />
+							<input type="text" name="month" onChange={handleEarthDateChange} placeholder="earth month" value={photoViewerState.earthMonth} />
+							<input type="text" name="day" onChange={handleEarthDateChange} placeholder="earth day" value={photoViewerState.earthDay} />
+						</EarthDateSC>
+					</label>
+					<label>
+						<SolSC>
+							Sol
+							<input type="text" onChange={handleSolChange} placeholder="type a number" value={photoViewerState.selSol} />
+						</SolSC>
+					</label>
+				</DatesSC>
+			</FormSC>
 		</div>
 	);
 }
