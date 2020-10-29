@@ -14,7 +14,6 @@ const PhotoItem = styled.div<PhotItemDiv>`
 	justify-content: center;
 	align-items: center;
 	padding: 5px;
-	border: 1px solid red;
 	width: ${(props) => (props.currentView === "grid" ? "250px" : "50vw")};
 	margin: 5px;
 	flex-wrap: wrap;
