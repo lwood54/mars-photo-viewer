@@ -11,7 +11,7 @@ const anim_center_left = keyframes`
   }
 `;
 // apply animations, this will be used when items move to the left
-const Center_left = styled.div`
+const CenterLeft = styled.div`
   animation: ${anim_center_left} 500ms ease-in;
   animation-fill-mode: forwards;
 `;
@@ -24,7 +24,7 @@ const anim_center_right = keyframes`
     transform: translate(71vw, 0);
   }
 `;
-const Center_right = styled.div`
+const CenterRight = styled.div`
   animation: ${anim_center_right} 500ms ease-in;
   animation-fill-mode: forwards;
 `;
@@ -35,17 +35,20 @@ const SliderSC = styled.div`
   justify-content: center;
   overflow: hidden;
   max-height: 500px;
+  img {
+    cursor: auto;
+  }
 `;
 
 // this will be applied if there is not active animation happening
 // need to reset class so animations will occur on next click
-const Center_normal = styled.div`
+const CenterNormal = styled.div`
   animation: none;
 `;
 
 const ArrowContainerSC = styled.div`
   width: 80%;
-  margin: 1rem auto;
+  margin: 0 auto 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,11 +72,6 @@ const NextArrowSC = styled(ArrowBaseSC)`
   transform: rotate(45deg);
 `;
 
-const NoSliderSC = styled.div`
-  /* width: 100px;
-	margin: auto; */
-`;
-
 const BasePhotoCont = styled.div`
   width: 100%;
   display: flex;
@@ -85,16 +83,17 @@ const BasePhotoCont = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  width: 100%;
-  margin: 0.75rem;
+  margin: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  box-sizing: border-box;
 `;
 
 const PhotoDetail = styled.div`
   width: 50%;
   margin: 0.5rem;
+  margin-bottom: 0;
   text-align: center;
   min-width: 500px;
 `;
@@ -183,29 +182,29 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
         <SliderSC>
           <BasePhotoCont>
             {moveLeft ? (
-              <Center_left>{baseArray ? baseArray[baseArray.length - 1] : undefined}</Center_left>
+              <CenterLeft>{baseArray ? baseArray[baseArray.length - 1] : undefined}</CenterLeft>
             ) : moveRight ? (
-              <Center_right>{baseArray ? baseArray[baseArray.length - 1] : undefined}</Center_right>
+              <CenterRight>{baseArray ? baseArray[baseArray.length - 1] : undefined}</CenterRight>
             ) : (
-              <Center_normal>{baseArray ? baseArray[baseArray.length - 1] : undefined}</Center_normal>
+              <CenterNormal>{baseArray ? baseArray[baseArray.length - 1] : undefined}</CenterNormal>
             )}
           </BasePhotoCont>
           <PhotoContainerSC>
             {moveLeft ? (
-              <Center_left>{baseArray ? baseArray[0] : undefined}</Center_left>
+              <CenterLeft>{baseArray ? baseArray[0] : undefined}</CenterLeft>
             ) : moveRight ? (
-              <Center_right>{baseArray ? baseArray[0] : undefined}</Center_right>
+              <CenterRight>{baseArray ? baseArray[0] : undefined}</CenterRight>
             ) : (
-              <Center_normal>{baseArray ? baseArray[0] : undefined}</Center_normal>
+              <CenterNormal>{baseArray ? baseArray[0] : undefined}</CenterNormal>
             )}
           </PhotoContainerSC>
           <BasePhotoCont>
             {moveLeft ? (
-              <Center_left>{baseArray ? baseArray[1] : undefined}</Center_left>
+              <CenterLeft>{baseArray ? baseArray[1] : undefined}</CenterLeft>
             ) : moveRight ? (
-              <Center_right>{baseArray ? baseArray[1] : undefined}</Center_right>
+              <CenterRight>{baseArray ? baseArray[1] : undefined}</CenterRight>
             ) : (
-              <Center_normal>{baseArray ? baseArray[1] : undefined}</Center_normal>
+              <CenterNormal>{baseArray ? baseArray[1] : undefined}</CenterNormal>
             )}
           </BasePhotoCont>
         </SliderSC>
