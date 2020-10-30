@@ -62,6 +62,14 @@ const ArrowBaseSC = styled.span`
   border-top: 2px solid #000;
   border-right: 2px solid #000;
   cursor: pointer;
+  &:hover {
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+  }
+  &:active {
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+  }
 `;
 
 const PrevArrowSC = styled(ArrowBaseSC)`
