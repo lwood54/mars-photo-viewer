@@ -19,7 +19,7 @@ const PhotosContainerSC: React.FC = styled.div`
 
 const TitleSC = styled.h1`
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 `;
 
 const ViewerControllerSC = styled.div`

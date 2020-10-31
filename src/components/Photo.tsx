@@ -15,13 +15,24 @@ const PhotoItem = styled.div<PhotItemDiv>`
   align-items: center;
   padding: 5px;
   width: ${(props) => (props.currentView === "grid" ? "250px" : "50vw")};
+  min-height: ${(props) => (props.currentView === "grid" ? "auto" : "500px")};
   margin: 5px;
   flex-wrap: wrap;
   box-sizing: border-box;
   cursor: pointer;
   img {
-    max-width: 65%;
+    max-width: ${(props) => (props.currentView === "grid" ? "100%" : "65%")};
     height: auto;
+    @media (min-width: 1775px) {
+      max-width: ${(props) => (props.currentView === "grid" ? "100%" : "550px")};
+    }
+    @media (max-width: 1300px) {
+      max-width: ${(props) => (props.currentView === "grid" ? "auto" : "400px")};
+    }
+    @media (max-width: 775px) {
+      /* max-width: ${(props) => (props.currentView === "grid" ? "auto" : "350px")}; */
+      width: 100%;
+    }
   }
 `;
 

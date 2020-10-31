@@ -33,8 +33,7 @@ const CenterRight = styled.div`
 const SliderSC = styled.div`
   display: flex;
   justify-content: center;
-  /* overflow: hidden; */
-  /* max-height: 500px; */
+  margin-top: -20px;
   img {
     cursor: auto;
   }
@@ -97,10 +96,11 @@ const InfoContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const PhotoDetail = styled.div`
+const PhotoDetail = styled.div<{ photoCount?: boolean }>`
   width: 50%;
   margin: 0.5rem;
   margin-bottom: 0;
+  margin: ${(props) => (props.photoCount ? "auto" : "0 0.5rem 0.25rem")}; // use auto margin for photo count
   text-align: center;
   min-width: 500px;
 `;
@@ -181,6 +181,9 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
   // motion status
   return (
     <div>
+      <PhotoDetail photoCount>
+        {photoCount} / {baseArray ? baseArray.length : 0}
+      </PhotoDetail>
       <ArrowContainerSC>
         <PrevArrowSC onClick={moveLeft || moveRight ? () => false : clickLeft}></PrevArrowSC>
         <NextArrowSC onClick={moveLeft || moveRight ? () => false : clickRight}></NextArrowSC>
@@ -223,9 +226,6 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
       )}
 
       <InfoContainer>
-        <PhotoDetail>
-          {photoCount} / {baseArray ? baseArray.length : 0}
-        </PhotoDetail>
         <PhotoDetail>
           <strong>Rover:</strong> {baseArray ? baseArray[0]?.props.photoData.rover.name : ""}
         </PhotoDetail>
