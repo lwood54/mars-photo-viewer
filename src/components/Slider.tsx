@@ -33,8 +33,8 @@ const CenterRight = styled.div`
 const SliderSC = styled.div`
   display: flex;
   justify-content: center;
-  overflow: hidden;
-  max-height: 500px;
+  /* overflow: hidden; */
+  /* max-height: 500px; */
   img {
     cursor: auto;
   }
@@ -81,12 +81,11 @@ const NextArrowSC = styled(ArrowBaseSC)`
 `;
 
 const BasePhotoCont = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   img {
-    width: 100%;
+    width: auto;
   }
 `;
 

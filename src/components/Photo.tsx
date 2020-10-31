@@ -20,7 +20,7 @@ const PhotoItem = styled.div<PhotItemDiv>`
   box-sizing: border-box;
   cursor: pointer;
   img {
-    max-width: 100%;
+    max-width: 65%;
     height: auto;
   }
 `;

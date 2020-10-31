@@ -13,16 +13,20 @@ const ModalSC = styled.div`
   top: 10vh;
   left: 10%;
   width: 80%;
+  min-height: 70vh;
   max-height: 80vh;
   background: white;
   border-radius: 5px;
-  padding: 15px;
+  padding: 15px 15px 25px;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   overflow: hidden;
-  & > img {
+  img {
     height: auto;
-    width: 65%;
+    width: 35rem;
+    @media (max-width: 900px) {
+      width: 90%;
+    }
   }
 `;
 // background allows user to still see list of images, darkens
@@ -40,8 +44,11 @@ const InfoContainer = styled.div`
   margin: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   box-sizing: border-box;
+  @media (max-width: 600px) {
+    justify-content: left;
+  }
 `;
 
 const PhotoDetail = styled.div`
@@ -50,6 +57,24 @@ const PhotoDetail = styled.div`
   margin-bottom: 0;
   text-align: center;
   min-width: 500px;
+  @media (max-width: 600px) {
+    min-width: 100%;
+    text-align: left;
+  }
+`;
+
+const XBox = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover {
+    font-weight: 500;
+  }
+  &:active {
+    font-weight: 100;
+  }
 `;
 
 // creating type interface that helps define props, currentData is optional
@@ -64,7 +89,7 @@ function Modal({ currentData, toggleModal }: Props): JSX.Element {
     <div>
       <ModalBackgroundSC onClick={toggleModal} />
       <ModalSC>
-        <img src={currentData?.img_src} alt={`${currentData?.rover.name} ${currentData?.earth_date}`} />
+        <XBox onClick={toggleModal}>X</XBox>
         <InfoContainer>
           <PhotoDetail>
             <strong>Rover:</strong> {currentData?.rover.name}
@@ -78,6 +103,7 @@ function Modal({ currentData, toggleModal }: Props): JSX.Element {
             {currentData?.earth_date}
           </PhotoDetail>
         </InfoContainer>
+        <img src={currentData?.img_src} alt={`${currentData?.rover.name} ${currentData?.earth_date}`} />
       </ModalSC>
     </div>
   );

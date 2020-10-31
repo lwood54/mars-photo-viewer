@@ -5,13 +5,14 @@ import styled from "styled-components";
 const FormSC = styled.form`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-bottom: 10px;
   @media (max-width: 1000px) {
-    width: 100%;
-    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
   }
-  @media (max-width: 685) {
+  @media (max-width: 685px) {
     width: 100%;
     justify-content: center;
   }
@@ -28,13 +29,16 @@ const ParamBase = styled.div`
     margin-left: 3px;
     padding: 3px;
   }
+  h5 {
+    margin: 0 0 0 3px;
+  }
 `;
 
 const EquipmentSC = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 75%;
-  margin: auto;
+  /* width: 75%; */
+  /* margin: auto; */
   @media (max-width: 1000px) {
     width: 30%;
     flex-wrap: wrap;
@@ -52,13 +56,13 @@ const CameraSC = styled(ParamBase)``;
 const RoverSC = styled(ParamBase)``;
 
 const DatesSC = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-evenly;
   @media (max-width: 1000px) {
-    /* width: 45%; */
-    width: auto;
-    justify-content: center;
+    width: 40%;
+    flex-wrap: wrap;
+    justify-content: left;
   }
   @media (max-width: 685px) {
     width: 100%;
@@ -68,7 +72,7 @@ const DatesSC = styled.div`
 const SolSC = styled(ParamBase)``;
 const EarthDateSC = styled(ParamBase)`
   @media (max-width: 1000px) {
-    width: 200px;
+    /* width: 200px; */
   }
 `;
 
@@ -173,7 +177,7 @@ function ParamSelector(): JSX.Element {
         <DatesSC>
           <label>
             <EarthDateSC>
-              Earth Date
+              <h5>Earth Date</h5>
               <input type="text" name="year" onChange={handleEarthDateChange} placeholder="earth year" value={photoViewerState.earthYear} />
               <input type="text" name="month" onChange={handleEarthDateChange} placeholder="earth month" value={photoViewerState.earthMonth} />
               <input type="text" name="day" onChange={handleEarthDateChange} placeholder="earth day" value={photoViewerState.earthDay} />
@@ -181,7 +185,7 @@ function ParamSelector(): JSX.Element {
           </label>
           <label>
             <SolSC>
-              Sol
+              <h5>Sol</h5>
               <input type="text" onChange={handleSolChange} placeholder="type a number" value={photoViewerState.selSol} />
             </SolSC>
           </label>
@@ -189,7 +193,7 @@ function ParamSelector(): JSX.Element {
         <EquipmentSC>
           <label>
             <RoverSC>
-              Rover Name
+              <h5>Rover Name</h5>
               <select name="camera" value={photoViewerState.selRoverType} onChange={handleRoverChange}>
                 <option value="curiosity">Curiosity</option>
                 <option value="opportunity">Opportunity</option>
@@ -199,7 +203,7 @@ function ParamSelector(): JSX.Element {
           </label>
           <label>
             <CameraSC>
-              Camera
+              <h5>Camera</h5>
               <select name="camera" value={photoViewerState.selCamera} onChange={handleCameraChange}>
                 <option value={camera.all}>{camera.all}</option>
                 <option value={camera.fhaz}>{camera.fhaz}</option>
