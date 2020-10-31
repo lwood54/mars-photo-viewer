@@ -156,7 +156,6 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
     // which will display photos in their new locations, which are the same spots
     // that the animations end
     let timeOut = window.innerWidth <= 750 ? 300 : 500;
-    // console.log(window.innerWidth);
     setTimeout(() => {
       setMoveLeft(false);
       setBaseArray(array);

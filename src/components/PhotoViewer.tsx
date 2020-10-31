@@ -134,7 +134,6 @@ function PhotoViewer(): JSX.Element {
   const getData = async (camera: string, sol: number, roverType: string, earthDate: string) => {
     const data = await fetchPhotoData(camera, sol, roverType, earthDate);
     // data is set when response returns
-    // TODO: handle message display if response is empty or null
     setPhotoViewerState({ ...photoViewerState, photoData: data });
   };
 
@@ -184,7 +183,7 @@ function PhotoViewer(): JSX.Element {
         )}
         <SearchSC onClick={handleSearch}>search</SearchSC>
       </ViewerControllerSC>
-      {photoViewerState.photoData.photos.length >= 1 ? (
+      {photoViewerState.photoData?.photos.length >= 1 ? (
         currentView === "grid" ? (
           <PhotosContainerSC>{photoEls}</PhotosContainerSC>
         ) : (
