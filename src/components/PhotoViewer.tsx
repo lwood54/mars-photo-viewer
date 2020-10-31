@@ -27,6 +27,12 @@ const ViewerControllerSC = styled.div`
   width: 80%;
   margin: auto;
   justify-content: space-around;
+  @media (max-width: 1000px) {
+    width: 650px;
+  }
+  @media (max-width: 665px) {
+    width: 500px;
+  }
 `;
 
 const GridViewSC = styled.div`
@@ -102,6 +108,11 @@ const SearchSC = styled.button`
   }
 `;
 
+const NoResultsSC = styled.h2`
+  margin-top: 20px;
+  text-align: center;
+`;
+
 function PhotoViewer(): JSX.Element {
   // using context to call/store data that can be accessed outside of parent/child nodes
   const [photoViewerState, setPhotoViewerState] = useContext(PhotoViewerContext);
@@ -135,14 +146,11 @@ function PhotoViewer(): JSX.Element {
   // function that toggles modal, but also accepts optional data argument that
   // can set currentData, which will be passed to the modal
   const toggleModal = (e: React.MouseEvent<HTMLElement>, data?: PhotoData) => {
-    console.log("toggle modal", e);
-    console.log("specific photo data: ", data);
     setCurrentData(data);
     setModalOpen(!modalOpen);
   };
 
   const toggleGridView = () => {
-    console.log("testing");
     setCurrentView(currentView === "grid" ? "slider" : "grid");
   };
 
@@ -176,7 +184,15 @@ function PhotoViewer(): JSX.Element {
         )}
         <SearchSC onClick={handleSearch}>search</SearchSC>
       </ViewerControllerSC>
-      {currentView === "grid" ? <PhotosContainerSC>{photoEls}</PhotosContainerSC> : <Slider photoArray={photoEls} />}
+      {photoViewerState.photoData.photos.length >= 1 ? (
+        currentView === "grid" ? (
+          <PhotosContainerSC>{photoEls}</PhotosContainerSC>
+        ) : (
+          <Slider photoArray={photoEls} />
+        )
+      ) : (
+        <NoResultsSC>No Results, please try different parameters.</NoResultsSC>
+      )}
     </div>
   );
 }

@@ -8,14 +8,14 @@ const FormSC = styled.form`
   justify-content: center;
   margin-bottom: 10px;
   @media (max-width: 1000px) {
-    width: 50%;
+    width: 440px;
     margin: auto;
     justify-content: center;
   }
-  @media (max-width: 685px) {
+  /* @media (max-width: 685px) {
     width: 100%;
     justify-content: center;
-  }
+  } */
 `;
 
 const ParamBase = styled.div`
@@ -53,7 +53,9 @@ const EquipmentSC = styled.div`
 
 const CameraSC = styled(ParamBase)``;
 
-const RoverSC = styled(ParamBase)``;
+const RoverSC = styled(ParamBase)`
+  margin-right: 18px;
+`;
 
 const DatesSC = styled.div`
   /* width: 100%; */
@@ -64,15 +66,17 @@ const DatesSC = styled.div`
     flex-wrap: wrap;
     justify-content: left;
   }
-  @media (max-width: 685px) {
+  /* @media (max-width: 685px) {
     width: 100%;
-  }
+  } */
 `;
 
 const SolSC = styled(ParamBase)``;
 const EarthDateSC = styled(ParamBase)`
-  @media (max-width: 1000px) {
-    /* width: 200px; */
+  input {
+    @media (max-width: 1000px) {
+      margin-bottom: 3px;
+    }
   }
 `;
 

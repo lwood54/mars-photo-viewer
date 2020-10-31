@@ -14,6 +14,9 @@ const anim_center_left = keyframes`
 const CenterLeft = styled.div`
   animation: ${anim_center_left} 500ms ease-in;
   animation-fill-mode: forwards;
+  @media (max-width: 750px) {
+    animation: ${anim_center_left} 300ms ease-in;
+  }
 `;
 
 const anim_center_right = keyframes`
@@ -27,6 +30,9 @@ const anim_center_right = keyframes`
 const CenterRight = styled.div`
   animation: ${anim_center_right} 500ms ease-in;
   animation-fill-mode: forwards;
+  @media (max-width: 750px) {
+    animation: ${anim_center_right} 300ms ease-in;
+  }
 `;
 
 // container for slider images
@@ -109,6 +115,9 @@ const PhotoDetail = styled.div<{ photoCount?: boolean }>`
 // padding is required in order to push previous and next divs out of viewport
 const PhotoContainerSC = styled(BasePhotoCont)`
   padding: 0 25%;
+  @media (max-width: 800px) {
+    padding: 0 55%;
+  }
 `;
 
 // Slider will take an array of Photos
@@ -146,10 +155,12 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
     // need to wait for animation to progress, then setting the shuffled array
     // which will display photos in their new locations, which are the same spots
     // that the animations end
+    let timeOut = window.innerWidth <= 750 ? 300 : 500;
+    // console.log(window.innerWidth);
     setTimeout(() => {
       setMoveLeft(false);
       setBaseArray(array);
-    }, 500);
+    }, timeOut);
     if (photoCount === baseArray.length) {
       setPhotoCount(1);
     } else {
@@ -167,10 +178,11 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
     // similar functionality as clickRight, but array mutation was handles slightly differently
     setMoveLeft(false);
     setMoveRight(true);
+    let timeOut = window.innerWidth <= 750 ? 300 : 500;
     setTimeout(() => {
       setMoveRight(false);
       setBaseArray(array);
-    }, 500);
+    }, timeOut);
     if (photoCount === 1) {
       setPhotoCount(baseArray.length);
     } else {
