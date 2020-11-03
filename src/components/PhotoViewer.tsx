@@ -155,7 +155,6 @@ function PhotoViewer(): JSX.Element {
             <InsideSliderShell />
           </SliderButtonShell>
         ) : (
-          // <SliderButtonSC onClick={toggleGridView}>Slider</SliderButtonSC>
           <GridViewSC onClick={toggleGridView}>
             <InsideGridBox />
             <InsideGridBox />

@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import PhotoViewer from "./PhotoViewer";
 import { PhotoViewerProvider } from "../PhotoViewerContext";
 import { PhotoViewerState } from "../types/interfaces";
@@ -26,6 +26,8 @@ const stateResultingInNoData: PhotoViewerState = {
   earthDay: "",
   selRoverType: "opportunity",
 };
+
+afterEach(cleanup);
 
 // NOTE: must pass context to test component
 test("renders PhotoViewer component", () => {

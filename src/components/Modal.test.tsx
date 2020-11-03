@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import Modal from "./Modal";
 
 const fakeData = {
@@ -21,6 +21,8 @@ const fakeData = {
   },
   sol: 34,
 };
+
+afterEach(cleanup);
 
 test("modal gets rendered with different data", () => {
   const handleToggle = jest.fn();

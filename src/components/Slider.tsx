@@ -210,7 +210,7 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
               <CenterNormal>{baseArray ? baseArray[baseArray.length - 1] : undefined}</CenterNormal>
             )}
           </BasePhotoCont>
-          <PhotoContainerSC>
+          <PhotoContainerSC data-testid="main-view">
             {moveLeft ? (
               <CenterLeft>{baseArray ? baseArray[0] : undefined}</CenterLeft>
             ) : moveRight ? (
