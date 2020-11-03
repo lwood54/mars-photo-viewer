@@ -91,10 +91,10 @@ function Modal({ currentData, toggleModal }: Props): JSX.Element {
       <ModalSC>
         <XBox onClick={toggleModal}>X</XBox>
         <InfoContainer>
-          <PhotoDetail>
+          <PhotoDetail data-testid="rover-data">
             <strong>Rover:</strong> {currentData?.rover.name}
           </PhotoDetail>
-          <PhotoDetail>
+          <PhotoDetail data-testid="camera-data">
             <strong>Camera: </strong>
             {currentData?.camera?.full_name}
           </PhotoDetail>
@@ -103,7 +103,7 @@ function Modal({ currentData, toggleModal }: Props): JSX.Element {
             {currentData?.earth_date}
           </PhotoDetail>
         </InfoContainer>
-        <img src={currentData?.img_src} alt={`${currentData?.rover.name} ${currentData?.earth_date}`} />
+        <img data-testid="img-data" src={currentData?.img_src} alt={`${currentData?.rover.name} ${currentData?.earth_date}`} />
       </ModalSC>
     </div>
   );

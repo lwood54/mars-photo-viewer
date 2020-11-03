@@ -7,21 +7,22 @@ import { PhotoViewerState } from "./types/interfaces";
 
 // setting some default values for the photo viewer app
 const defaultPhotoViewerState: PhotoViewerState = {
-	photoData: null,
-	selCamera: "fhaz",
-	selSol: 54,
-	selEarthDate: "",
-	earthYear: "",
-	earthMonth: "",
-	earthDay: "",
-	selRoverType: "curiosity",
+  photoData: null,
+  selCamera: "fhaz",
+  selSol: 54,
+  selEarthDate: "",
+  earthYear: "",
+  earthMonth: "",
+  earthDay: "",
+  selRoverType: "curiosity",
 };
 // defines context which can be passed
-export const PhotoViewerContext = createContext<any>(defaultPhotoViewerState);
+// export const PhotoViewerContext = createContext<any>(defaultPhotoViewerState);
+export const PhotoViewerContext = createContext();
 
-export const PhotoViewerProvider = (props: any) => {
-	// creating state within provider, so this can be managed at the context lever
-	const [photoViewerState, setPhotoViewerState] = useState(defaultPhotoViewerState);
-
-	return <PhotoViewerContext.Provider value={[photoViewerState, setPhotoViewerState]}>{props.children}</PhotoViewerContext.Provider>;
+// creating a provider wrapper that will provide initial state
+export const PhotoViewerProvider = (props: React.FC) => {
+  // creating state within provider, so this can be managed at the context lever
+  const [photoViewerState, setPhotoViewerState] = useState(defaultPhotoViewerState);
+  return <PhotoViewerContext.Provider value={[photoViewerState, setPhotoViewerState]}>{props.children}</PhotoViewerContext.Provider>;
 };

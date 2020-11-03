@@ -7,6 +7,7 @@ import { PhotoData } from "../types/interfaces";
 import Photo from "./Photo";
 import Modal from "./Modal";
 import Slider from "./Slider";
+import SearchButton from "./SearchButton";
 
 // styled-component
 const PhotosContainerSC: React.FC = styled.div`
@@ -89,25 +90,6 @@ const InsideSliderShell = styled.div`
   border: 2px solid black;
 `;
 
-const SearchSC = styled.button`
-  height: 35px;
-  width: 150px;
-  cursor: pointer;
-  position: relative;
-  background-color: white;
-  border-radius: 3px;
-  outline: none;
-  &:hover {
-    border: 3px solid black;
-  }
-  &:active {
-    color: white;
-    background-color: #696b6b;
-    border: none;
-    outline: none;
-  }
-`;
-
 const NoResultsSC = styled.h2`
   margin-top: 20px;
   text-align: center;
@@ -181,7 +163,7 @@ function PhotoViewer(): JSX.Element {
             <InsideGridBox />
           </GridViewSC>
         )}
-        <SearchSC onClick={handleSearch}>search</SearchSC>
+        <SearchButton handleClick={handleSearch} />
       </ViewerControllerSC>
       {photoViewerState.photoData?.photos.length >= 1 ? (
         currentView === "grid" ? (
