@@ -1,5 +1,5 @@
 import React from "react";
-import PhotoViewer from "./components/PhotoViewer";
+import PhotoViewer from "./components/PhotoViewer/PhotoViewer";
 import { PhotoViewerProvider } from "./PhotoViewerContext";
 
 function App(): JSX.Element {

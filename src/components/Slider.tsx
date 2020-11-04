@@ -158,7 +158,7 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
     let timeOut = window.innerWidth <= 750 ? 300 : 500;
     setTimeout(() => {
       setMoveLeft(false);
-      setBaseArray(array);
+      setBaseArray(array ?? []);
     }, timeOut);
     if (photoCount === baseArray.length) {
       setPhotoCount(1);
@@ -180,7 +180,7 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
     let timeOut = window.innerWidth <= 750 ? 300 : 500;
     setTimeout(() => {
       setMoveRight(false);
-      setBaseArray(array);
+      setBaseArray(array ?? []);
     }, timeOut);
     if (photoCount === 1) {
       setPhotoCount(baseArray.length);

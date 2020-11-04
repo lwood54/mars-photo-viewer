@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Slider from "./Slider";
-import Photo from "./Photo";
+import Photo from "./Photo/Photo";
+import { viewOptions } from "../types/constants";
 
 const mockPhoto1 = {
   camera: {
@@ -64,16 +65,15 @@ const mockPhoto3 = {
 };
 
 const mockPhotoArray = [
-  <Photo photoData={mockPhoto1} key={1} currentView={"slider"} />,
-  <Photo photoData={mockPhoto2} key={2} currentView={"slider"} />,
-  <Photo photoData={mockPhoto3} key={3} currentView={"slider"} />,
+  <Photo photoData={mockPhoto1} key={1} currentView={viewOptions.SLIDER} />,
+  <Photo photoData={mockPhoto2} key={2} currentView={viewOptions.SLIDER} />,
+  <Photo photoData={mockPhoto3} key={3} currentView={viewOptions.SLIDER} />,
 ];
 
 // assert that given some data, slider will render that info
 test("given data render slider pic with data", () => {
   const { getByTestId } = render(<Slider photoArray={mockPhotoArray} />);
   const main_view = getByTestId("main-view");
-  console.log("main_view: ", main_view.textContent);
 });
 
 // test prevArrow click, show display photo as previous index

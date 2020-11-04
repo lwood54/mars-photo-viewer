@@ -1,38 +1,39 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import PhotoViewer from "./PhotoViewer";
-import { PhotoViewerProvider } from "../PhotoViewerContext";
-import { PhotoViewerState } from "../types/interfaces";
+import { PhotoViewerProvider } from "../../PhotoViewerContext";
+import { PhotoViewerState } from "../../types/interfaces";
+import { ACTIONS } from "../../types/constants";
 
-// sample search params
-const stateResultingInSomeData: PhotoViewerState = {
-  photoData: null,
-  selCamera: "fhaz",
-  selSol: 54,
-  selEarthDate: "",
-  earthYear: "",
-  earthMonth: "",
-  earthDay: "",
-  selRoverType: "curiosity",
-};
+// // sample search params
+// const stateResultingInSomeData: PhotoViewerState = {
+//   photoData: null,
+//   selCamera: "fhaz",
+//   selSol: 54,
+//   selEarthDate: "",
+//   earthYear: "",
+//   earthMonth: "",
+//   earthDay: "",
+//   selRoverType: "curiosity",
+// };
 
-const stateResultingInNoData: PhotoViewerState = {
-  photoData: null,
-  selCamera: "mast",
-  selSol: 5,
-  selEarthDate: "",
-  earthYear: "",
-  earthMonth: "",
-  earthDay: "",
-  selRoverType: "opportunity",
-};
+// const stateResultingInNoData: PhotoViewerState = {
+//   photoData: null,
+//   selCamera: "mast",
+//   selSol: 5,
+//   selEarthDate: "",
+//   earthYear: "",
+//   earthMonth: "",
+//   earthDay: "",
+//   selRoverType: "opportunity",
+// };
 
 afterEach(cleanup);
 
 // NOTE: must pass context to test component
 test("renders PhotoViewer component", () => {
   render(
-    <PhotoViewerProvider value={stateResultingInSomeData}>
+    <PhotoViewerProvider>
       <PhotoViewer />
     </PhotoViewerProvider>
   );
@@ -40,7 +41,7 @@ test("renders PhotoViewer component", () => {
 
 test("shows text if no search results", () => {
   const wrapper = render(
-    <PhotoViewerProvider value={stateResultingInNoData}>
+    <PhotoViewerProvider>
       <PhotoViewer />
     </PhotoViewerProvider>
   );
@@ -49,7 +50,7 @@ test("shows text if no search results", () => {
 
 test("search button is a button", () => {
   const { getByTestId } = render(
-    <PhotoViewerProvider value={stateResultingInSomeData}>
+    <PhotoViewerProvider>
       <PhotoViewer />
     </PhotoViewerProvider>
   );

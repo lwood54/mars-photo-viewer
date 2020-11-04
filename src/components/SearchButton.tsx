@@ -20,7 +20,11 @@ const SearchSC = styled.button`
   }
 `;
 
-function SearchButton({ handleClick }) {
+interface Props {
+  handleClick: (e: React.MouseEvent<HTMLElement>) => void;
+}
+
+function SearchButton({ handleClick }: Props) {
   return (
     <SearchSC data-testid="search-button" onClick={handleClick}>
       search
