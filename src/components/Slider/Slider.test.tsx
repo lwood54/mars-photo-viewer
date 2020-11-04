@@ -72,7 +72,7 @@ const mockPhotoArray = [
 
 // assert that given some data, slider will render that info
 test("given data render slider pic with data", () => {
-  const { getByTestId } = render(<Slider photoArray={mockPhotoArray} />);
+  // const { getByTestId } = render(<Slider photoArray={mockPhotoArray} />);
   // const main_view = getByTestId("main-view");
 });
 
