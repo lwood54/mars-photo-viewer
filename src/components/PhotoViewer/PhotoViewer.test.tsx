@@ -2,31 +2,6 @@ import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import PhotoViewer from "./PhotoViewer";
 import { PhotoViewerProvider } from "../../PhotoViewerContext";
-import { PhotoViewerState } from "../../types/interfaces";
-import { ACTIONS } from "../../types/constants";
-
-// // sample search params
-// const stateResultingInSomeData: PhotoViewerState = {
-//   photoData: null,
-//   selCamera: "fhaz",
-//   selSol: 54,
-//   selEarthDate: "",
-//   earthYear: "",
-//   earthMonth: "",
-//   earthDay: "",
-//   selRoverType: "curiosity",
-// };
-
-// const stateResultingInNoData: PhotoViewerState = {
-//   photoData: null,
-//   selCamera: "mast",
-//   selSol: 5,
-//   selEarthDate: "",
-//   earthYear: "",
-//   earthMonth: "",
-//   earthDay: "",
-//   selRoverType: "opportunity",
-// };
 
 afterEach(cleanup);
 

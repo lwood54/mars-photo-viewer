@@ -1,13 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
-import styled from "styled-components";
 import { PhotoViewerContext } from "../../PhotoViewerContext";
-import { fetchPhotoData } from "../../helpers";
+import { fetchPhotoData } from "../../helpers/helpers";
 import ParamSelector from "../ParamSelector/ParamSelector";
 import { PhotoData } from "../../types/interfaces";
 import Photo from "../Photo/Photo";
 import Modal from "../Modal/Modal";
-import Slider from "../Slider";
-import SearchButton from "../SearchButton";
+import Slider from "../Slider/Slider";
+import SearchButton from "../SearchButton/SearchButton";
 import { ACTIONS, viewOptions } from "../../types/constants";
 import {
   TitleSC,

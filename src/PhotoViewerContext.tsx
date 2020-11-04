@@ -1,6 +1,6 @@
 import React, { useReducer, Reducer, createContext } from "react";
 import { PhotoViewerState } from "./types/interfaces";
-import { ACTIONS } from "./types/constants";
+import { reducer } from "./helpers/helpers";
 
 // creating a 'store' or context, which can be accessed regardless of parent/child relationship
 // and passing of props
@@ -17,28 +17,7 @@ const defaultPhotoViewerState: PhotoViewerState = {
   earthDay: "",
   selRoverType: "curiosity",
 };
-const reducer = (state: PhotoViewerState, action: { type: string; payload: any }) => {
-  switch (action.type) {
-    case ACTIONS.SET_PHOTO_DATA:
-      return { ...state, photoData: action.payload };
-    case ACTIONS.SET_CAMERA:
-      return { ...state, selCamera: action.payload };
-    case ACTIONS.SET_SOL:
-      return { ...state, selSol: action.payload };
-    case ACTIONS.SET_EARTH_DATE:
-      return { ...state, selEarthDate: action.payload };
-    case ACTIONS.SET_EARTH_YEAR:
-      return { ...state, earthYear: action.payload };
-    case ACTIONS.SET_EARTH_MONTH:
-      return { ...state, earthMonth: action.payload };
-    case ACTIONS.SET_EARTH_DAY:
-      return { ...state, earthDay: action.payload };
-    case ACTIONS.SET_ROVER_TYPE:
-      return { ...state, selRoverType: action.payload };
-    default:
-      return state;
-  }
-};
+
 // defines context which can be passed
 // export const PhotoViewerContext = createContext<any>(defaultPhotoViewerState);
 export const PhotoViewerContext = createContext<any>(defaultPhotoViewerState);
