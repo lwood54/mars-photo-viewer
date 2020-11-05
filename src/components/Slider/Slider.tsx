@@ -86,12 +86,11 @@ function Slider({ photoArray }: { photoArray: JSX.Element[] }): JSX.Element {
   return (
     <>
       <PhotoDetail photoCount>
-        {/* {photoCount} / {basePhotoArray ? basePhotoArray.length : 0} */}
         {photoCount} / {basePhotoArray && basePhotoArray.length}
       </PhotoDetail>
       <ArrowContainerSC>
         <PrevArrowSC onClick={moveLeft || moveRight ? () => false : clickLeft}></PrevArrowSC>
-        <NextArrowSC onClick={moveLeft || moveRight ? () => false : clickRight}></NextArrowSC>
+        <NextArrowSC data-testid="next-arrow" onClick={moveLeft || moveRight ? () => false : clickRight}></NextArrowSC>
       </ArrowContainerSC>
       {basePhotoArray?.length > 2 ? (
         <SliderSC>

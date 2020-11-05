@@ -5,7 +5,6 @@ import { FormSC, DatesSC, EarthDateSC, SolSC, EquipmentSC, RoverSC, CameraSC } f
 
 function ParamSelector(): JSX.Element {
   // accessing photo viewer 'store' with useContext
-  // const [photoViewerState, setPhotoViewerState] = useContext(PhotoViewerContext);
   const { state, dispatch } = useContext(PhotoViewerContext);
   // tracking whether user will be searching based on sol or earth_date
   const [useSol, setUseSol] = useState(true);
