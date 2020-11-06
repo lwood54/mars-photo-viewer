@@ -21,8 +21,6 @@ import {
 
 function PhotoViewer(): JSX.Element {
   // using context to call/store data that can be accessed outside of parent/child nodes
-  /// TODO: refactor all photoViewerState instances to dispatch(type, payload)???
-  // const {photoViewerState, setPhotoViewerState} = useContext(PhotoViewerContext);
   const { state, dispatch } = useContext(PhotoViewerContext);
   // need to track whether modal should be open
   const [modalOpen, setModalOpen] = useState(false);
@@ -42,7 +40,6 @@ function PhotoViewer(): JSX.Element {
   const getData = async (camera: string, sol: number, roverType: string, earthDate: string) => {
     const data = await fetchPhotoData(camera, sol, roverType, earthDate);
     // data is set when response returns
-    // setPhotoViewerState({ ...photoViewerState, photoData: data });
     dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
   };
 

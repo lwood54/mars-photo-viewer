@@ -1,5 +1,5 @@
 import { ACTIONS } from "../types/constants";
-import { PhotoViewerState } from "../types/interfaces";
+import { PhotoViewerState, Action } from "../types/interfaces";
 
 export const fetchPhotoData = async (camera: string, sol: number, roverType: string, earthDate: string) => {
   const api_key = "ho6NPUw7FBguQ4Nsju6c0NKaBS8x6joZjffiuxo6";
@@ -77,7 +77,7 @@ const isMonthOf31 = (month: number) => {
   return month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12;
 };
 
-export const reducer = (state: PhotoViewerState, action: { type: string; payload: any }) => {
+export const reducer = (state: PhotoViewerState, action: Action) => {
   switch (action.type) {
     case ACTIONS.SET_PHOTO_DATA:
       return { ...state, photoData: action.payload };

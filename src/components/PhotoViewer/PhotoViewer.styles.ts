@@ -61,14 +61,11 @@ export const SliderButtonShell = styled.div`
   height: 40px;
   width: 65px;
   position: relative;
-  /* top: -10px; */
   right: 5px;
-  /* border: 1px solid black; */
   border-right: 2px solid black;
   border-left: 2px solid black;
   display: flex;
   justify-content: center;
-  /* box-sizing: border-box; */
   cursor: pointer;
   &:hover {
     border-right: 4px solid black;

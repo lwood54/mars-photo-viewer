@@ -32,3 +32,8 @@ export interface PhotoViewerState {
   earthDay: string;
   selRoverType: string;
 }
+
+export interface Action {
+	type: string;
+	payload: any;
+}

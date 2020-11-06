@@ -9,7 +9,7 @@ function ParamSelector(): JSX.Element {
   // tracking whether user will be searching based on sol or earth_date
   const [useSol, setUseSol] = useState(true);
   // need to know if component has mounted so initial sol default is not
-  // overriddent with useEffect resetting photo viewer state
+  // overridden with useEffect resetting photo viewer state
   const [isMounted, setIsMounted] = useState(false);
 
   // tracks if user is entering info in either sol or earth_date fields

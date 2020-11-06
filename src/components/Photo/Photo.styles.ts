@@ -29,7 +29,6 @@ export const PhotoItem = styled.div<PhotoItemDiv>`
       max-width: ${(props) => (props.currentView === viewOptions.GRID ? "auto" : "400px")};
     }
     @media (max-width: 775px) {
-      /* max-width: ${(props) => (props.currentView === viewOptions.GRID ? "auto" : "350px")}; */
       width: 100%;
     }
   }
